@@ -206,6 +206,15 @@ namespace SQLComitter
             this.sqlScintilla.Location = new System.Drawing.Point(15, 190);
             this.sqlScintilla.Name = "sqlScintilla";
             this.sqlScintilla.Size = new System.Drawing.Size(757, 330);
+            this.sqlScintilla.Styles.BraceBad.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.sqlScintilla.Styles.BraceLight.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.sqlScintilla.Styles.CallTip.FontName = "Segoe UI\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.sqlScintilla.Styles.ControlChar.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.sqlScintilla.Styles.Default.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.sqlScintilla.Styles.IndentGuide.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.sqlScintilla.Styles.LastPredefined.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.sqlScintilla.Styles.LineNumber.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.sqlScintilla.Styles.Max.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
             this.sqlScintilla.TabIndex = 6;
             this.sqlScintilla.DragDrop += new System.Windows.Forms.DragEventHandler(this.sqlScintilla_DragDrop);
             this.sqlScintilla.DragEnter += new System.Windows.Forms.DragEventHandler(this.sqlScintilla_DragEnter);
