@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using LibGit2Sharp;
 using SharpConfig;
@@ -33,25 +34,78 @@ namespace SQLComitter
             } while (!found);
 
             repositoryTextBox.Text = repositoryBrowserDialog.SelectedPath;
+
             FillAuthorsAutoComplete();
+            FillSQLFileNameAutoComplete();
         }
 
         void FillAuthorsAutoComplete()
         {
+            var ui = TaskScheduler.FromCurrentSynchronizationContext();
+            Task.Factory.StartNew(() => GetPreviousCommitAuthors(repositoryTextBox.Text))
+                .ContinueWith(task =>
+                {
+                    if (task.Result != null)
+                        authorNameEmailTextBox.AutoCompleteCustomSource.AddRange(task.Result.ToArray());
+                    else
+                        authorNameEmailTextBox.AutoCompleteMode = AutoCompleteMode.None;
+                }, ui);
+        }
+
+        void FillSQLFileNameAutoComplete()
+        {
+            var ui = TaskScheduler.FromCurrentSynchronizationContext();
+            Task.Factory.StartNew(() => GetSQLFilesInDirectory(CombinePath(repositoryTextBox.Text, filePathTextBox.Text)))
+                .ContinueWith(task =>
+                {
+                    if (task.Result != null)
+                        fileNameTextBox.AutoCompleteCustomSource.AddRange(task.Result.ToArray());
+                    else
+                        fileNameTextBox.AutoCompleteMode = AutoCompleteMode.None;
+                }, ui);
+
+        }
+
+        static string CombinePath(params string[] paths)
+        {
+            for (var i = 0; i < paths.Length; i++)
+            {
+                // Path.Combine doesn't combine paths starting with / or \
+                if (paths[i].StartsWith("/") || paths[i].StartsWith("\\"))
+                    paths[i] = paths[i].Remove(0, 1);
+
+                if (i != paths.Length - 1)
+                    if (!paths[i].EndsWith("/") && !paths[i].EndsWith("\\"))
+                        paths[i] += "/";
+            }
+
+            return Path.Combine(paths);
+        }
+
+        static IEnumerable<string> GetSQLFilesInDirectory(string path)
+        {
             try
             {
-                var authors = GetPreviousCommitAuthors();
-                authorNameEmailTextBox.AutoCompleteCustomSource.AddRange(authors.ToArray());
+                var files = Directory.GetFiles(path, "*.sql", SearchOption.TopDirectoryOnly);
+                return files.Select(Path.GetFileName);
             }
             catch (Exception)
             {
-                authorNameEmailTextBox.AutoCompleteMode = AutoCompleteMode.None;
+                return null;
             }
         }
 
-        IEnumerable<string> GetPreviousCommitAuthors()
+        static IEnumerable<string> GetPreviousCommitAuthors(string repoPath)
         {
-            var repo = new Repository(repositoryTextBox.Text + "/.git");
+            Repository repo;
+            try
+            {
+                repo = new Repository(repoPath + "/.git");
+            }
+            catch (Exception)
+            {
+                return null;
+            }
 
             var nameSet = new HashSet<String>();
 
@@ -149,7 +203,7 @@ namespace SQLComitter
                 return;
             }
 
-            var fileName = repositoryTextBox.Text + filePathTextBox.Text + "/" + fileNameTextBox.Text;
+            var fileName = CombinePath(repositoryTextBox.Text, filePathTextBox.Text, fileNameTextBox.Text);
 
             if (File.Exists(fileName))
             {
@@ -286,9 +340,10 @@ namespace SQLComitter
                 repositoryTextBox.Text = path.ToString();
                 filePathTextBox.Text = sqlDir.ToString();
 
-                committerNameEmailTextBox.Text = name + " " + email;
+                committerNameEmailTextBox.Text = name + @" " + email;
 
                 FillAuthorsAutoComplete();
+                FillSQLFileNameAutoComplete();
             }
         }
     }
