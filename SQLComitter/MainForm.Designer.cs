@@ -45,10 +45,17 @@ namespace SQLComitter
             this.commitButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.filePathTextBox = new System.Windows.Forms.TextBox();
-            this.TDBRadioButton = new System.Windows.Forms.RadioButton();
-            this.TCRadioButton = new System.Windows.Forms.RadioButton();
             this.sqlScintilla = new ScintillaNET.Scintilla();
+            this.reposDataGridView = new System.Windows.Forms.DataGridView();
+            this.committerNameEmailTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.repoPathColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pathColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.committerNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.committerEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.activateColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.sqlScintilla)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reposDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // repositoryTextBox
@@ -75,17 +82,17 @@ namespace SQLComitter
             // 
             // commitTextBox
             // 
-            this.commitTextBox.Location = new System.Drawing.Point(13, 73);
+            this.commitTextBox.Location = new System.Drawing.Point(13, 55);
             this.commitTextBox.Multiline = true;
             this.commitTextBox.Name = "commitTextBox";
-            this.commitTextBox.Size = new System.Drawing.Size(336, 87);
+            this.commitTextBox.Size = new System.Drawing.Size(336, 104);
             this.commitTextBox.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(12, 57);
+            this.label1.Location = new System.Drawing.Point(12, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 3;
@@ -95,7 +102,7 @@ namespace SQLComitter
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(375, 57);
+            this.label2.Location = new System.Drawing.Point(375, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 4;
@@ -105,7 +112,7 @@ namespace SQLComitter
             // 
             this.authorNameEmailTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.authorNameEmailTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.authorNameEmailTextBox.Location = new System.Drawing.Point(378, 73);
+            this.authorNameEmailTextBox.Location = new System.Drawing.Point(378, 55);
             this.authorNameEmailTextBox.Name = "authorNameEmailTextBox";
             this.authorNameEmailTextBox.Size = new System.Drawing.Size(394, 20);
             this.authorNameEmailTextBox.TabIndex = 3;
@@ -114,7 +121,7 @@ namespace SQLComitter
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(12, 173);
+            this.label3.Location = new System.Drawing.Point(12, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 6;
@@ -124,7 +131,7 @@ namespace SQLComitter
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(375, 108);
+            this.label4.Location = new System.Drawing.Point(375, 123);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 13);
             this.label4.TabIndex = 8;
@@ -132,14 +139,14 @@ namespace SQLComitter
             // 
             // fileNameTextBox
             // 
-            this.fileNameTextBox.Location = new System.Drawing.Point(505, 124);
+            this.fileNameTextBox.Location = new System.Drawing.Point(505, 139);
             this.fileNameTextBox.Name = "fileNameTextBox";
             this.fileNameTextBox.Size = new System.Drawing.Size(267, 20);
             this.fileNameTextBox.TabIndex = 5;
             // 
             // commitButton
             // 
-            this.commitButton.Location = new System.Drawing.Point(616, 526);
+            this.commitButton.Location = new System.Drawing.Point(697, 505);
             this.commitButton.Name = "commitButton";
             this.commitButton.Size = new System.Drawing.Size(75, 23);
             this.commitButton.TabIndex = 7;
@@ -149,7 +156,7 @@ namespace SQLComitter
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(697, 526);
+            this.cancelButton.Location = new System.Drawing.Point(697, 534);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 8;
@@ -159,36 +166,10 @@ namespace SQLComitter
             // 
             // filePathTextBox
             // 
-            this.filePathTextBox.Location = new System.Drawing.Point(378, 124);
+            this.filePathTextBox.Location = new System.Drawing.Point(378, 139);
             this.filePathTextBox.Name = "filePathTextBox";
             this.filePathTextBox.Size = new System.Drawing.Size(121, 20);
             this.filePathTextBox.TabIndex = 4;
-            // 
-            // TDBRadioButton
-            // 
-            this.TDBRadioButton.AutoSize = true;
-            this.TDBRadioButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.TDBRadioButton.Location = new System.Drawing.Point(15, 532);
-            this.TDBRadioButton.Name = "TDBRadioButton";
-            this.TDBRadioButton.Size = new System.Drawing.Size(65, 17);
-            this.TDBRadioButton.TabIndex = 9;
-            this.TDBRadioButton.TabStop = true;
-            this.TDBRadioButton.Text = "TDB434";
-            this.TDBRadioButton.UseVisualStyleBackColor = true;
-            this.TDBRadioButton.CheckedChanged += new System.EventHandler(this.TDBRadioButton_CheckedChanged);
-            // 
-            // TCRadioButton
-            // 
-            this.TCRadioButton.AutoSize = true;
-            this.TCRadioButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.TCRadioButton.Location = new System.Drawing.Point(86, 532);
-            this.TCRadioButton.Name = "TCRadioButton";
-            this.TCRadioButton.Size = new System.Drawing.Size(39, 17);
-            this.TCRadioButton.TabIndex = 10;
-            this.TCRadioButton.TabStop = true;
-            this.TCRadioButton.Text = "TC";
-            this.TCRadioButton.UseVisualStyleBackColor = true;
-            this.TCRadioButton.CheckedChanged += new System.EventHandler(this.TCRadioButton_CheckedChanged);
             // 
             // sqlScintilla
             // 
@@ -203,9 +184,9 @@ namespace SQLComitter
             this.sqlScintilla.Lexing.LineCommentPrefix = "";
             this.sqlScintilla.Lexing.StreamCommentPrefix = "";
             this.sqlScintilla.Lexing.StreamCommentSufix = "";
-            this.sqlScintilla.Location = new System.Drawing.Point(15, 190);
+            this.sqlScintilla.Location = new System.Drawing.Point(15, 188);
             this.sqlScintilla.Name = "sqlScintilla";
-            this.sqlScintilla.Size = new System.Drawing.Size(757, 330);
+            this.sqlScintilla.Size = new System.Drawing.Size(757, 311);
             this.sqlScintilla.Styles.BraceBad.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
             this.sqlScintilla.Styles.BraceLight.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
             this.sqlScintilla.Styles.CallTip.FontName = "Segoe UI\0\0\0\0\0\0\0\0\0\0\0\0";
@@ -219,16 +200,79 @@ namespace SQLComitter
             this.sqlScintilla.DragDrop += new System.Windows.Forms.DragEventHandler(this.sqlScintilla_DragDrop);
             this.sqlScintilla.DragEnter += new System.Windows.Forms.DragEventHandler(this.sqlScintilla_DragEnter);
             // 
+            // reposDataGridView
+            // 
+            this.reposDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.reposDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.repoPathColumn,
+            this.pathColumn,
+            this.committerNameColumn,
+            this.committerEmailColumn,
+            this.activateColumn});
+            this.reposDataGridView.Location = new System.Drawing.Point(15, 505);
+            this.reposDataGridView.Name = "reposDataGridView";
+            this.reposDataGridView.Size = new System.Drawing.Size(664, 105);
+            this.reposDataGridView.TabIndex = 9;
+            this.reposDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.reposDataGridView_CellContentClick);
+            // 
+            // committerNameEmailTextBox
+            // 
+            this.committerNameEmailTextBox.Location = new System.Drawing.Point(378, 98);
+            this.committerNameEmailTextBox.Name = "committerNameEmailTextBox";
+            this.committerNameEmailTextBox.Size = new System.Drawing.Size(394, 20);
+            this.committerNameEmailTextBox.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.Location = new System.Drawing.Point(375, 81);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Committer";
+            // 
+            // repoPathColumn
+            // 
+            this.repoPathColumn.HeaderText = "RepoPath";
+            this.repoPathColumn.Name = "repoPathColumn";
+            this.repoPathColumn.Width = 180;
+            // 
+            // pathColumn
+            // 
+            this.pathColumn.HeaderText = "SQL Directory";
+            this.pathColumn.Name = "pathColumn";
+            this.pathColumn.Width = 150;
+            // 
+            // committerNameColumn
+            // 
+            this.committerNameColumn.HeaderText = "CommitterName";
+            this.committerNameColumn.Name = "committerNameColumn";
+            this.committerNameColumn.Width = 120;
+            // 
+            // committerEmailColumn
+            // 
+            this.committerEmailColumn.HeaderText = "CommiterEmail";
+            this.committerEmailColumn.Name = "committerEmailColumn";
+            this.committerEmailColumn.Width = 120;
+            // 
+            // activateColumn
+            // 
+            this.activateColumn.HeaderText = "Activate";
+            this.activateColumn.Name = "activateColumn";
+            this.activateColumn.Width = 50;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(784, 622);
+            this.Controls.Add(this.committerNameEmailTextBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.reposDataGridView);
             this.Controls.Add(this.sqlScintilla);
-            this.Controls.Add(this.TCRadioButton);
-            this.Controls.Add(this.TDBRadioButton);
             this.Controls.Add(this.filePathTextBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.commitButton);
@@ -245,7 +289,10 @@ namespace SQLComitter
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "SQL Comitter";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sqlScintilla)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reposDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,9 +313,15 @@ namespace SQLComitter
         private System.Windows.Forms.Button commitButton;
         private System.Windows.Forms.Button cancelButton;
         private TextBox filePathTextBox;
-        private RadioButton TDBRadioButton;
-        private RadioButton TCRadioButton;
         private ScintillaNET.Scintilla sqlScintilla;
+        private DataGridView reposDataGridView;
+        private TextBox committerNameEmailTextBox;
+        private Label label5;
+        private DataGridViewTextBoxColumn repoPathColumn;
+        private DataGridViewTextBoxColumn pathColumn;
+        private DataGridViewTextBoxColumn committerNameColumn;
+        private DataGridViewTextBoxColumn committerEmailColumn;
+        private DataGridViewButtonColumn activateColumn;
     }
 }
 
