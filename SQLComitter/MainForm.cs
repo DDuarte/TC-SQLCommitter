@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using LibGit2Sharp;
 using SharpConfig;
 
-namespace SQLComitter
+namespace SQLCommitter
 {
     public partial class MainForm : Form
     {

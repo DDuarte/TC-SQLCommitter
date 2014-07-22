@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-using System.Security.AccessControl;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace SQLComitter
+namespace SQLCommitter
 {
     partial class MainForm
     {
@@ -32,6 +30,7 @@ namespace SQLComitter
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.repositoryTextBox = new System.Windows.Forms.TextBox();
             this.repositoryBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.repositoryButton = new System.Windows.Forms.Button();
@@ -288,9 +287,10 @@ namespace SQLComitter
             this.Controls.Add(this.repositoryButton);
             this.Controls.Add(this.repositoryTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "SQL Comitter";
+            this.Text = "SQL Committer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sqlScintilla)).EndInit();
