@@ -27,6 +27,9 @@ namespace SQLComitter
                     var dirs = Directory.GetDirectories(folderName);
                     found = dirs.Any(f => f.EndsWith(".git"));
                 }
+                else if (res == DialogResult.Cancel)
+                    return;
+
             } while (!found);
 
             repositoryTextBox.Text = repositoryBrowserDialog.SelectedPath;
